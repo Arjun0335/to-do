@@ -24,7 +24,8 @@ for i, t in enumerate (st.session_state["task_list"]):
     if st.checkbox(f" {i + 1}. {t}"):
         st.session_state["task_list"].remove(t)
         st.session_state['previous_task'].append(t)
-    if st.button("Remove"):
+    
+    if st.button("Remove", key=f"remove_button_{i}"):
         st.session_state["task_list"].remove(t)
     
 with st.sidebar:
@@ -35,3 +36,4 @@ with st.sidebar:
 if now.strftime('%H:%M:%S') == "00:00:00":
     st.write(f"Your yesterday pending tasks are: {st.session_state["task_list"]}")
     st.session_state["task_list"] = []
+    st.session_state['previous_task'] = []
